@@ -3,18 +3,19 @@
 <form action='/summarizer' method='POST'>
   <div class="form-group">
       {% if flag%}
-
-  <textarea name="ip_text" cols="3" rows="5" class="form-control" required="true"  >{{data}}</textarea>
-    {%else %}
-     <label for="exampleInputEmail1">Input Text</label>
-    <textarea name="input" cols="3" rows="5" class="form-control" required="true"  ></textarea>
+          <textarea name="ip_text" cols="3" rows="5" class="form-control" required="true"  >{{data}}</textarea>
+      {%else %}
+          <label for="exampleInputEmail1">Input Text</label>
+          <textarea name="input" cols="3" rows="5" class="form-control" required="true"  ></textarea>
      {% endif %}
   </div>
   <br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-danger"><a href='/summarizer'>Reset</button>
+  <button type="submit" class="btn btn-warning">Summarize</button>
+  
   {% if flag%}
   <div>
-        <textarea name="op_text" cols="3" rows="5" class="form-control"  >{{data}}</textarea>
+        <textarea name="op_text" cols="3" rows="5" class="form-control">{{data}}</textarea>
   </div>
   {% endif %}
 

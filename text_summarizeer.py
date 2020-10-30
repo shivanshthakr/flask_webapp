@@ -1,8 +1,10 @@
-from flask import Flask, render_template,request,redirect,url_for
+from flask import Flask, render_template,request,redirect,url_for,Response
 from googlesearch import search
-import flask
+
 import json
-from flask import Response
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+#from urllib import urlopen
 app = Flask(__name__,template_folder='template')
 def search_web(query):
     res=[]
@@ -11,6 +13,12 @@ def search_web(query):
     type(res)
     return res
 
+
+def get_text(url):
+	page = urlopen(url)
+	soup = BeautifulSoup(page)
+	fetched_text = ' '.join(map(lambda p:p.text,soup.find_all('p')))
+	return fetched_text
 @app.route('/')
 def home():
     return  render_template('index.html')
@@ -18,7 +26,8 @@ def home():
 @app.route('/search',methods=['POST','GET'])
 def searchFun():
     if request.method=='POST':
-        res=search_web(request.form['search_ip'])
+        res=get_text(request.form['search_ip'])
+        print(res)
         return render_template('search.html',flag=True,result=res) 
     
     return render_template('search.html') 

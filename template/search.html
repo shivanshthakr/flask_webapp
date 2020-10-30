@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if flag %}
-  <textarea name="search_op" cols="3" rows="5" class="form-control" >Summarization from link</textarea>
+  <textarea name="search_op" cols="3" rows="5" class="form-control" >{{result}}</textarea>
  {% else %}
  <form class="form-inline my-2 my-lg-0"method='POST'>
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name ='search_ip'>
